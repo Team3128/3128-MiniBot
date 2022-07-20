@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PWM;
 import static frc.robot.Constants.WiringConstants.*;
+import static frc.robot.Constants.UtilityConstants.*;
 import static frc.robot.Constants.PIDConstants.*;
 import edu.wpi.first.math.controller.PIDController;
 
@@ -52,8 +53,8 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public void setPIDSpeed(double setpoint){
-    final double leftMotorPID = pid.calculate(m_leftEncoder.getDistance(), setpoint); 
-    final double rightMotorPID = pid.calculate(m_rightEncoder.getDistance(), setpoint); 
+    double leftMotorPID = pid.calculate(m_leftEncoder.getDistance(), setpoint); 
+    double rightMotorPID = pid.calculate(m_rightEncoder.getDistance(), setpoint); 
 
     pid.setTolerance(k_posTolerance,k_vTolerance);
     pid.atSetpoint(); 

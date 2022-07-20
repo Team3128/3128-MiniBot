@@ -17,18 +17,30 @@ public final class Constants {
     public static class WiringConstants {
         public static final int k_rightMotorPWMPin = 0;
         public static final int k_leftMotorPWMPin = 0;
+        public static final int k_shooterMotorPWMPin = 0;
 
         public static final int k_rightMotorDirPin = 0;
         public static final int k_leftMotorDirPin = 0;
+        public static final int k_shooterMotorDirPin = 0;
 
         public static final int k_leftMotorID = 0;
         public static final int k_rightMotorID = 1;
+        public static final int k_shooterMotorID = 2;
 
         public static final int k_rightEncoderPin1 = 0;
         public static final int k_rightEncoderPin2 = 0;
 
         public static final int k_leftEncoderPin1 = 0;
         public static final int k_leftEncoderPin2 = 0;
+
+        public static final int k_shooterEncoderPin1 = 0;
+        public static final int k_shooterEncoderPin2 = 0;
+
+        public static double k_shooterRPM = 0;
+    }
+
+    public static class UtilityConstants {
+        public static final double k_TTMotorPulsePerRotation = 8;
     }
 
     public static class PIDConstants {
