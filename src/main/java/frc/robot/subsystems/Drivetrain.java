@@ -7,9 +7,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PWM;
-import static frc.robot.Constants.WiringConstants.*;
-import static frc.robot.Constants.UtilityConstants.*;
-import static frc.robot.Constants.PIDConstants.*;
+import static frc.robot.Constants.DrivetrainConstants.*;
 import edu.wpi.first.math.controller.PIDController;
 
 public class Drivetrain extends SubsystemBase {

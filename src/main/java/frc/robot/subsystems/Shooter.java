@@ -7,12 +7,12 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PWM;
-import static frc.robot.Constants.WiringConstants.*;
-import static frc.robot.Constants.UtilityConstants.*;
-import static frc.robot.Constants.PIDConstants.*;
+import static frc.robot.Constants.ShooterConstants.*;
+import edu.wpi.first.math.MathUtil;
+import edu.wpi.first.wpilibj2.command.PIDSubsystem;
 import edu.wpi.first.math.controller.PIDController;
 
-public class Shooter extends SubsystemBase {
+public class Shooter extends PIDSubsystem {
 
   public static Shooter instance;
 
@@ -20,9 +20,15 @@ public class Shooter extends SubsystemBase {
 
   private Encoder m_shooterEncoder = new Encoder(k_shooterEncoderPin1, k_shooterEncoderPin2);
 
-  private PIDController pid = new PIDController(kP, kI, kD);  
+  private int plateauCount = 0;
 
-  public Shooter() {}
+  public Shooter() {
+    super(new PIDController(kP, kI, kD));
+
+    //not sure of putting this here
+    setEncoderDistancePerPulse();
+
+  }
 
   public static synchronized Shooter getInstance() {
     if (instance == null) {
@@ -40,23 +46,62 @@ public class Shooter extends SubsystemBase {
   public void simulationPeriodic() {
     // This method will be called once per scheduler run during simulation
   }
+
+  //uses the voltage output from PID and add a feed forward value
+  //need to figure out powers of PWM motors and batteries
+  @Override
+  protected void useOutput(double output, double setpoint) {
+    double ff = kF * setpoint;
+    double voltageOutput = output + ff;
+
+    if (getController().atSetpoint() && (setpoint != 0)) {
+      plateauCount ++;
+    } else {
+      plateauCount = 0;
+    }
+
+    if (setpoint == 0) voltageOutput = 0;
+
+    m_shooterMotor.setSpeed(MathUtil.clamp(voltageOutput / 7.2, -1, 1));
+    //this line needs testing
+  }
+
+  //get current RPM
+  @Override
+  protected double getMeasurement() {
+    return m_shooterEncoder.getRate() * 60;
+    //rotation per second to RPM
+  }
   
-  public void beginShoot(double setpoint) {  
-    double shooterPID = pid.calculate(m_shooterEncoder.getRate(), setpoint);
+  //Begins the PID loop to reach setpoint RPM
+  public void beginShoot(double rpm) {  
+    setSetpoint(rpm);
+    getController().setTolerance(k_rpmTolerancePercent * rpm);
+  }
+
+  //stop the shooter from shooting by setting setpoint to 0
+  public void stopShoot() {
+    plateauCount = 0;
+    setSetpoint(0);
+  }
+
+  //checks if shooter is ready to shoot through plateau count
+  public boolean isReady() {
+    return (plateauCount >= k_plateauCount) && (getSetpoint() != 0);
+  }
+
+  //resets plateau count
+  public void resetPlateauCount() {
+    plateauCount = 0;
   }
 
   public void setEncoderDistancePerPulse() {
-    m_shooterEncoder.setDistancePerPulse(60 * (1/k_TTMotorPulsePerRotation));
+    m_shooterEncoder.setDistancePerPulse((1 / k_TTMotorPulsePerRotation));
     //converting "unit per second" to RPM
   }
 
   public int getEncoder() {
     return m_shooterEncoder.get();
-  }
-
-  public double getRPM() {
-    return m_shooterEncoder.getRate();
-    //need to transfer units per second to RPM, not sure about units
   }
 
   public void resetEncoder() {
