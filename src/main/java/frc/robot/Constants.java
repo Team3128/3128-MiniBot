@@ -14,18 +14,15 @@ package frc.robot;
  */
 public final class Constants {
     
-    public static class WiringConstants {
+    public static class DrivetrainConstants {
         public static final int k_rightMotorPWMPin = 0;
         public static final int k_leftMotorPWMPin = 0;
-        public static final int k_shooterMotorPWMPin = 0;
 
         public static final int k_rightMotorDirPin = 0;
         public static final int k_leftMotorDirPin = 0;
-        public static final int k_shooterMotorDirPin = 0;
 
         public static final int k_leftMotorID = 0;
         public static final int k_rightMotorID = 1;
-        public static final int k_shooterMotorID = 2;
 
         public static final int k_rightEncoderPin1 = 0;
         public static final int k_rightEncoderPin2 = 0;
@@ -33,17 +30,6 @@ public final class Constants {
         public static final int k_leftEncoderPin1 = 0;
         public static final int k_leftEncoderPin2 = 0;
 
-        public static final int k_shooterEncoderPin1 = 0;
-        public static final int k_shooterEncoderPin2 = 0;
-
-        public static double k_shooterRPM = 0;
-    }
-
-    public static class UtilityConstants {
-        public static final double k_TTMotorPulsePerRotation = 8;
-    }
-
-    public static class PIDConstants {
         public static final double kF_left = 0;
         public static final double kF_right = 0;
         public static final double k_maxSpeed = 0; 
@@ -56,6 +42,26 @@ public final class Constants {
         public static final double k_vTolerance = 5;
         public static final double k_maxIntegral = 5;
         public static final double k_minIntegral = 5;
+    }
 
+    public static class ShooterConstants {
+        public static final int k_shooterMotorPWMPin = 0;
+        public static final int k_shooterMotorDirPin = 0;
+        public static final int k_shooterMotorID = 2;
+
+        public static final int k_shooterEncoderPin1 = 0;
+        public static final int k_shooterEncoderPin2 = 0;
+
+        public static final double k_TTMotorPulsePerRotation = 8;
+
+        public static double k_shooterRPM = 0;
+        
+        public static final double kP = 0;
+        public static final double kI = 0;
+        public static final double kD = 0;
+        public static final double kF = 0;
+
+        public static final double k_rpmTolerancePercent = 0.1;
+        public static final double k_plateauCount = 5;
     }
 }
