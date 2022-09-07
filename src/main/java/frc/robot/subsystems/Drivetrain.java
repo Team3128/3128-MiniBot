@@ -4,18 +4,19 @@
 
 package frc.robot.subsystems; 
 
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import static frc.robot.Constants.DrivetrainConstants.*; 
+
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PWM;
-import static frc.robot.Constants.DrivetrainConstants.*;
-import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Drivetrain extends SubsystemBase {
 
   public static Drivetrain instance;
 
-  private PWM m_leftMotor = new PWM(k_leftMotorID);
-  private PWM m_rightMotor = new PWM(k_rightMotorID);
+  private PWM m_leftMotor = new PWM(k_leftMotorPWMPin);
+  private PWM m_rightMotor = new PWM(k_rightMotorPWMPin);
 
   private Encoder m_leftEncoder = new Encoder(k_leftEncoderPin1, k_leftEncoderPin2);
   private Encoder m_rightEncoder = new Encoder(k_rightEncoderPin1, k_rightEncoderPin2, true);
@@ -26,6 +27,10 @@ public class Drivetrain extends SubsystemBase {
     // m_rightEncoder.setInverted(); //On website updated of 2022 but not sad
     //m_leftMotor.setFeedbackDevice(m_leftEncoder);
     //m_leftMotor.setMaxSpeed(k_maxSpeed); 
+
+    //m_leftMotor.setSpeed(k_maxSpeed);
+    //m_rightMotor.setSpeed(k_maxSpeed);
+ 
   }
 
   public static synchronized Drivetrain getInstance() {
@@ -51,8 +56,8 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public void setPIDSpeed(double setpoint){
-    double leftMotorPID = pid.calculate(m_leftEncoder.getDistance(), setpoint); 
-    double rightMotorPID = pid.calculate(m_rightEncoder.getDistance(), setpoint); 
+    double leftMotorPID = pid.calculate(m_leftEncoder.getDistance(), setpoint*k_F); 
+    double rightMotorPID = pid.calculate(m_rightEncoder.getDistance(), setpoint*k_F); 
 
     pid.setTolerance(k_posTolerance,k_vTolerance);
     pid.atSetpoint(); 

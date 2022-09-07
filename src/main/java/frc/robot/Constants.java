@@ -30,9 +30,8 @@ public final class Constants {
         public static final int k_leftEncoderPin1 = 0;
         public static final int k_leftEncoderPin2 = 0;
 
-        public static final double kF_left = 0;
-        public static final double kF_right = 0;
         public static final double k_maxSpeed = 0; 
+        public static final double k_F = 1.0/k_maxSpeed;
 
         public static final double kP = 0;
         public static final double kI = 0;
