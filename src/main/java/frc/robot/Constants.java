@@ -63,4 +63,13 @@ public final class Constants {
         public static final double k_rpmTolerancePercent = 0.1;
         public static final double k_plateauCount = 5;
     }
+
+    public static class FeederConstants {
+        public static final int k_feederMotorPWMPin = 0;
+
+        public static final int k_feederEncoderPin1 = 0;
+        public static final int k_feederEncoderPin2 = 0;
+
+        public static final double k_feederRPM = 0;
+    }
 }
