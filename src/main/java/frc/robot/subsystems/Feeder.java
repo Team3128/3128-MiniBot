@@ -17,7 +17,9 @@ public class Feeder extends SubsystemBase {
   private Encoder m_encoder = new Encoder(k_feederEncoderPin1, k_feederEncoderPin2);
 
   /** Creates a new ExampleSubsystem. */
-  public Feeder() {}
+  public Feeder() {
+    setEncoderDistancePerPulse();
+  }
 
   public static synchronized Feeder getInstance() {
     if (instance == null) {
@@ -40,12 +42,21 @@ public class Feeder extends SubsystemBase {
     m_motor.setSpeed(k_feederRPM);
   }
 
+  public void beginReverseFeed() {
+    m_motor.setSpeed(-k_feederRPM);
+  }
+
   public void stopFeed() {
     m_motor.setSpeed(0);
   }
 
-  public int getEncoder() {
-    return(m_encoder.get());
+  public void setEncoderDistancePerPulse() {
+    m_encoder.setDistancePerPulse((1 / k_TTMotorPulsePerRotation));
+    //converting "unit per second" to RPM
+  }
+
+  public double getEncoderRate() {
+    return(m_encoder.getRate());
   }
 
   public void resetEncoder() {
