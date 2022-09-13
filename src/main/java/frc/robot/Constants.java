@@ -71,5 +71,9 @@ public final class Constants {
         public static final int k_feederEncoderPin2 = 0;
 
         public static final double k_feederRPM = 0;
+
+        public static final double k_TTMotorPulsePerRotation = 8;
+
+        
     }
 }
