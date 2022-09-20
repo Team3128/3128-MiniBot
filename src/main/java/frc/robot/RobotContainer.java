@@ -10,6 +10,7 @@ import frc.robot.commands.DriveForDistanceCommand;
 import frc.robot.commands.DriveForTimeCommand;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.TestMotorSpeedCommand;
+import frc.robot.commands.RunFeederAndShoot;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -32,6 +33,7 @@ public class RobotContainer {
   private final JoystickButton m_button1 = new JoystickButton(m_joystick, 1); 
   private final JoystickButton m_button2 = new JoystickButton(m_joystick, 2); 
   private final JoystickButton m_button3 = new JoystickButton(m_joystick, 3); 
+  private final JoystickButton m_button4 = new JoystickButton(m_joystick, 4); 
   private final ExampleCommand m_autoCommand = null;
   private CommandScheduler m_commandScheduler = CommandScheduler.getInstance(); 
 
@@ -54,6 +56,7 @@ public class RobotContainer {
     m_button1.whenPressed(new DriveForTimeCommand(m_drivetrain, 0.75, 3.0)); //-/+1.0, seconds
     m_button2.whenPressed(new DriveForDistanceCommand(m_drivetrain, 0.75, 3000)); //-/+1.0, seconds
     m_button3.whenPressed(new TestMotorSpeedCommand(m_drivetrain));
+    m_button4.whenPressed(new RunFeederAndShoot(0));
   }
 
   /**
