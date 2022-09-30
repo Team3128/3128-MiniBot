@@ -74,6 +74,21 @@ public final class Constants {
 
         public static final double k_TTMotorPulsePerRotation = 8;
 
-        
+    }
+
+    public static class TurretConstants {
+        public static final int k_turretMotorPWMPin = 0;
+
+        public static final int k_turretEncoderPin1 = 0;
+        public static final int k_turretEncoderPin2 = 0;
+
+        public static final double kP = 0;
+        public static final double kI = 0;
+        public static final double kD = 0;
+        public static final double kF = 0;
+
+        public static final double k_turretTolerance = 0;
+
+        public static final double k_TTMotorPulsePerRotation = 8;
     }
 }
