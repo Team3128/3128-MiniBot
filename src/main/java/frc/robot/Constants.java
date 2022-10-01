@@ -72,7 +72,7 @@ public final class Constants {
 
         public static final double k_feederRPM = 0;
 
-        public static final double k_TTMotorPulsePerRotation = 8;
+        public static final double k_TTMotorPulsePerRotation = 960;
 
     }
 
@@ -87,8 +87,10 @@ public final class Constants {
         public static final double kD = 0;
         public static final double kF = 0;
 
+        public static final double k_turretDefaultAngle = 0;
+
         public static final double k_turretTolerance = 0;
 
-        public static final double k_TTMotorPulsePerRotation = 8;
+        public static final double k_TTMotorPulsePerRotation = 960;// not too sure about thiss
     }
 }

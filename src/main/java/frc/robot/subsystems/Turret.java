@@ -52,7 +52,7 @@ public class Turret extends PIDSubsystem {
 
     @Override
     protected void useOutput(double output, double setpoint) {
-      //double ff = kF * 
+      // we shouldn't need a FF...
 
       m_turretMotor.setSpeed(MathUtil.clamp(output / 7.2, -1, 1));
         
@@ -67,6 +67,11 @@ public class Turret extends PIDSubsystem {
     // Set the encoder to 0 (corresponding to front?)
     public void zeroEncoder() {
       m_turretEncoder.reset();
+    }
+
+    // Set turret angle to default(0)
+    public void resetAngle() {
+      startPID(k_turretDefaultAngle);
     }
 
     public void convertEncoderUnit() {
