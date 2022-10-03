@@ -53,10 +53,10 @@ public class RobotContainer {
    * @param m_joystick 
    */
   private void configureButtonBindings() {
-    m_button1.whenPressed(new DriveForTimeCommand(m_drivetrain, 0.75, 3.0)); //-/+1.0, seconds
+    m_button1.whenPressed(new RunFeederAndShoot(0));
     m_button2.whenPressed(new DriveForDistanceCommand(m_drivetrain, 0.75, 3000)); //-/+1.0, seconds
     m_button3.whenPressed(new TestMotorSpeedCommand(m_drivetrain));
-    m_button4.whenPressed(new RunFeederAndShoot(0));
+    m_button4.whenPressed(new DriveForTimeCommand(m_drivetrain, 0.75, 3.0)); //-/+1.0, seconds
   }
 
   /**
