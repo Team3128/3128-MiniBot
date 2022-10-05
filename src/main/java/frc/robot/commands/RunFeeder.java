@@ -19,10 +19,10 @@ public class RunFeeder extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public RunFeeder(Feeder subsystem) {
-    m_feeder = subsystem;
+  public RunFeeder() {
+    m_feeder = Feeder.getInstance();
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(subsystem);
+    addRequirements(m_feeder);
   }
 
   // Called when the command is initially scheduled.

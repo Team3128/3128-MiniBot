@@ -5,12 +5,14 @@
 package frc.robot.commands;
 
 import frc.robot.subsystems.Turret;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
 public class TurnTurretManual extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final Turret m_turret;
+  private final Joystick m_joystick;
   private double angle;
 
   /**
@@ -18,8 +20,10 @@ public class TurnTurretManual extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public TurnTurretManual(double angle) {
+  public TurnTurretManual(Joystick joystick) {
     m_turret = Turret.getInstance();
+    m_joystick = joystick;
+    
     this.angle = angle;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_turret);
@@ -32,6 +36,8 @@ public class TurnTurretManual extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+
+
     m_turret.startPID(angle);
   }
 
