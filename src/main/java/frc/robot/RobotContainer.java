@@ -11,8 +11,13 @@ import frc.robot.commands.DriveForTimeCommand;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.TestMotorSpeedCommand;
 import frc.robot.commands.RunFeederAndShoot;
+import frc.robot.commands.RunFeeder;
+import frc.robot.commands.TurnTurret;
+import frc.robot.commands.TurnTurretManual;
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.Turret;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.Feeder;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -27,13 +32,16 @@ import frc.robot.Constants;
 
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final Drivetrain m_drivetrain = new Drivetrain(); 
-  private final Joystick m_joystick = new Joystick(0); 
-  private final JoystickButton m_button1 = new JoystickButton(m_joystick, 1); 
-  private final JoystickButton m_button2 = new JoystickButton(m_joystick, 2); 
-  private final JoystickButton m_button3 = new JoystickButton(m_joystick, 3); 
-  private final JoystickButton m_button4 = new JoystickButton(m_joystick, 4); 
+  private final Turret m_turret = new Turret();
+  private final Joystick m_rightStick = new Joystick(0); 
+  private final Joystick m_leftStick = new Joystick(1);
+  private final JoystickButton m_button1 = new JoystickButton(m_rightStick, 1); 
+  private final JoystickButton m_button2 = new JoystickButton(m_rightStick, 2); 
+  private final JoystickButton m_button3 = new JoystickButton(m_rightStick, 3); 
+  private final JoystickButton m_button4 = new JoystickButton(m_rightStick, 4); 
+  private final JoystickButton m_button5 = new JoystickButton(m_rightStick, 5); 
+  private final JoystickButton m_button6 = new JoystickButton(m_rightStick, 6); 
   private final ExampleCommand m_autoCommand = null;
   private CommandScheduler m_commandScheduler = CommandScheduler.getInstance(); 
 
@@ -41,7 +49,11 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
 
-    m_commandScheduler.setDefaultCommand(m_drivetrain, new ArcadeDriveCommand(m_drivetrain, m_joystick));
+
+    m_commandScheduler.setDefaultCommand(m_drivetrain, new ArcadeDriveCommand(m_drivetrain, m_rightStick));
+    configureButtonBindings();
+
+    m_commandScheduler.setDefaultCommand(m_turret, new TurnTurretManual(m_leftStick));
     configureButtonBindings();
   }
 
@@ -50,13 +62,15 @@ public class RobotContainer {
    * instantiating a {@link GenericHID} or one of its subclasses ({@link
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
-   * @param m_joystick 
+   * @param m_rightStick 
    */
   private void configureButtonBindings() {
-    m_button1.whenPressed(new RunFeederAndShoot(0));
+    m_button1.whenHeld(new RunFeederAndShoot(0));
     m_button2.whenPressed(new DriveForDistanceCommand(m_drivetrain, 0.75, 3000)); //-/+1.0, seconds
     m_button3.whenPressed(new TestMotorSpeedCommand(m_drivetrain));
     m_button4.whenPressed(new DriveForTimeCommand(m_drivetrain, 0.75, 3.0)); //-/+1.0, seconds
+    m_button5.whenPressed(() -> m_turret.resetAngle()); // Set turret angle to default(0)
+    m_button6.whenHeld(new RunFeeder());  
   }
 
   /**

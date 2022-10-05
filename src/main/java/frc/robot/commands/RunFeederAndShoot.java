@@ -16,7 +16,7 @@ public class RunFeederAndShoot extends SequentialCommandGroup{
         addCommands(
             //if not working, probably should stop the feeder before shooter is at correct RPM
             parallel (
-                new RunFeeder(Feeder.getInstance()),
+                new RunFeeder(),
                 new CmdShootRPM(RPM)
             )
         );
