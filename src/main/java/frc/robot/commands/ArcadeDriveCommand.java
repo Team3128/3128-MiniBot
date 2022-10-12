@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import frc.robot.common.hardware.input.NAR_Joystick;
 import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -12,14 +13,14 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class ArcadeDriveCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final Drivetrain m_drivetrain;
-  private final Joystick m_joystick; 
+  private final NAR_Joystick m_joystick; 
 
   /**
    * Creates a new ArcadeDriveCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public ArcadeDriveCommand(Drivetrain drivetrain, Joystick joystick) {
+  public ArcadeDriveCommand(Drivetrain drivetrain, NAR_Joystick joystick) {
     m_drivetrain = drivetrain;
     m_joystick = joystick; 
     // Use addRequirements() here to declare subsystem dependencies.

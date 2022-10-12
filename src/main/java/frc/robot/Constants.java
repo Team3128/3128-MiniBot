@@ -51,7 +51,7 @@ public final class Constants {
         public static final int k_shooterEncoderPin1 = 0;
         public static final int k_shooterEncoderPin2 = 0;
 
-        public static final double k_TTMotorPulsePerRotation = 8;
+        public static final double k_TTMotorPulsePerRotation = 960;
 
         public static double k_shooterRPM = 0;
         
@@ -92,5 +92,7 @@ public final class Constants {
         public static final double k_turretTolerance = 0;
 
         public static final double k_TTMotorPulsePerRotation = 960;// not too sure about thiss
+
+        public static final double k_twistToDegree = 10; // TODO needs to be checked
     }
 }
