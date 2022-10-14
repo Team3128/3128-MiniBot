@@ -43,11 +43,13 @@ public class Turret extends PIDSubsystem {
     @Override
     public void periodic() {
       // This method will be called once per scheduler run
+      super.periodic();
     }
   
     @Override
     public void simulationPeriodic() {
       // This method will be called once per scheduler run during simulation
+      super.periodic();
     }
 
     @Override

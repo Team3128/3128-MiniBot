@@ -61,7 +61,7 @@ public class RobotContainer {
     m_rightStick.getButton(4).whenPressed(new DriveForTimeCommand(m_drivetrain, 0.75, 3.0)); //-/+1.0, seconds
     m_rightStick.getButton(5).whenPressed(() -> m_turret.resetAngle()); // Set turret angle to default(0)
     m_rightStick.getButton(6).whenHeld(new RunFeeder());
-    // m_leftStick.ifTwisted().whenActive(new TurnTurret(getTwist)); TODO make twist relate to turrent motion
+    m_leftStick.ifTwisted().whenActive(new TurnTurretFromJoystick(m_leftStick.getTwist())); // using left joystick to control turret
     
   }
 
