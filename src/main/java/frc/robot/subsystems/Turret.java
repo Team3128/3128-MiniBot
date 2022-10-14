@@ -64,6 +64,10 @@ public class Turret extends PIDSubsystem {
         //get count of encoder
     }
 
+    public double getEncoder() {
+      return m_turretEncoder.getDistance();
+    }
+
     // Set the encoder to 0 (corresponding to front?)
     public void zeroEncoder() {
       m_turretEncoder.reset();
