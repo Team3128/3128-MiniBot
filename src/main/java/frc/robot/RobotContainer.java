@@ -4,8 +4,6 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ArcadeDriveCommand;
 import frc.robot.commands.DriveForDistanceCommand;
 import frc.robot.commands.DriveForTimeCommand;
@@ -15,14 +13,10 @@ import frc.robot.commands.RunFeeder;
 import frc.robot.commands.TurnTurret;
 import frc.robot.commands.TurnTurretFromJoystick;
 import frc.robot.common.hardware.input.NAR_Joystick;
-import frc.robot.common.hardware.input.NAR_XboxController;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Turret;
-import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Feeder;
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants;
 
 /**
@@ -43,26 +37,20 @@ public class RobotContainer {
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    // Configure the button bindings
-
-
-    m_commandScheduler.setDefaultCommand(m_drivetrain, new ArcadeDriveCommand(m_drivetrain, m_rightStick));
+    m_commandScheduler.setDefaultCommand(m_drivetrain, new ArcadeDriveCommand(m_rightStick));
     configureButtonBindings();
 
-    // m_commandScheduler.setDefaultCommand(m_turret, new TurnTurretManual(m_leftStick));
-    // configureButtonBindings();
   }
 
 
   private void configureButtonBindings() {
     m_rightStick.getButton(1).whenHeld(new RunFeederAndShoot(0));
-    m_rightStick.getButton(2).whenPressed(new DriveForDistanceCommand(m_drivetrain, 0.75, 3000)); //-/+1.0, seconds
-    m_rightStick.getButton(3).whenPressed(new TestMotorSpeedCommand(m_drivetrain));
-    m_rightStick.getButton(4).whenPressed(new DriveForTimeCommand(m_drivetrain, 0.75, 3.0)); //-/+1.0, seconds
+    m_rightStick.getButton(2).whenPressed(new DriveForDistanceCommand(0.75, 3000)); //-/+1.0, seconds
+    m_rightStick.getButton(3).whenPressed(new TestMotorSpeedCommand());
+    m_rightStick.getButton(4).whenPressed(new DriveForTimeCommand(0.75, 3.0)); //-/+1.0, seconds
     m_rightStick.getButton(5).whenPressed(() -> m_turret.resetAngle()); // Set turret angle to default(0)
     m_rightStick.getButton(6).whenHeld(new RunFeeder());
     m_leftStick.ifTwisted().whenActive(new TurnTurretFromJoystick(m_leftStick.getTwist())); // using left joystick to control turret
     
   }
-
 }

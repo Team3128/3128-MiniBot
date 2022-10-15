@@ -7,14 +7,13 @@ package frc.robot.commands;
 import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-/** An example command that uses an example subsystem. */
 public class CmdShootRPM extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private Shooter shooter;
   private double rpm;
 
   /**
-   * Creates a new ExampleCommand.
+   * Creates a new CMDShootRPM command.
    *
    * @param subsystem The subsystem used by this command.
    */

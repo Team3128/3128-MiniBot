@@ -8,7 +8,6 @@ import frc.robot.subsystems.Turret;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import static frc.robot.Constants.TurretConstants.*;
 
-/** An example command that uses an example subsystem. */
 public class TurnTurretFromJoystick extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final Turret m_turret;

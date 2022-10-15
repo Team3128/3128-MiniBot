@@ -21,6 +21,7 @@ public class AutoPrograms {
     public Command getAutonomousCommand() {
         String autoName = "ShootFor10sec";
  
+        // if (autoName == null) {
         //     return null;
         // }
         // probably need this after adding some kind of input

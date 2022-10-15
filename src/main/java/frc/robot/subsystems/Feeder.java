@@ -16,7 +16,6 @@ public class Feeder extends SubsystemBase {
 
   private Encoder m_encoder = new Encoder(k_feederEncoderPin1, k_feederEncoderPin2);
 
-  /** Creates a new ExampleSubsystem. */
   public Feeder() {
     setEncoderDistancePerPulse();
   }

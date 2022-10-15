@@ -4,7 +4,6 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PWM;
 import static frc.robot.Constants.ShooterConstants.*;
@@ -25,8 +24,7 @@ public class Shooter extends PIDSubsystem {
   public Shooter() {
     super(new PIDController(kP, kI, kD));
 
-    //not sure of putting this here
-    setEncoderDistancePerPulse();
+    convertEncoderUnit();
 
   }
 
@@ -40,15 +38,16 @@ public class Shooter extends PIDSubsystem {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    super.periodic();
   }
 
   @Override
   public void simulationPeriodic() {
     // This method will be called once per scheduler run during simulation
+    super.simulationPeriodic();
   }
 
   //uses the voltage output from PID and add a feed forward value
-  //need to figure out powers of PWM motors and batteries
   @Override
   protected void useOutput(double output, double setpoint) {
     double ff = kF * setpoint;
@@ -95,9 +94,8 @@ public class Shooter extends PIDSubsystem {
     plateauCount = 0;
   }
 
-  public void setEncoderDistancePerPulse() {
+  public void convertEncoderUnit() {
     m_shooterEncoder.setDistancePerPulse((1 / k_TTMotorPulsePerRotation));
-    //converting "unit per second" to RPM
   }
 
   public int getEncoder() {
