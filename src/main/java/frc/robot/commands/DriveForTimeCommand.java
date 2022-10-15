@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj.PWM;
 
-/** An example command that uses an example subsystem. */
 public class DriveForTimeCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final Drivetrain m_drivetrain; 
@@ -23,8 +22,8 @@ public class DriveForTimeCommand extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public DriveForTimeCommand(Drivetrain drivetrain, double speed, double time) {
-    m_drivetrain = drivetrain;
+  public DriveForTimeCommand(double speed, double time) {
+    m_drivetrain = Drivetrain.getInstance();
     m_speed = speed;
     m_time = time; 
     // Use addRequirements() here to declare subsystem dependencies.

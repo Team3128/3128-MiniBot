@@ -8,14 +8,13 @@ import edu.wpi.first.wpilibj.Timer;
 import frc.robot.subsystems.Feeder;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-/** An example command that uses an example subsystem. */
 public class RunFeeder extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final Feeder m_feeder;
   private Timer m_timer = new Timer();
 
   /**
-   * Creates a new ExampleCommand.
+   * Creates a new RunFeeder command.
    *
    * @param subsystem The subsystem used by this command.
    */

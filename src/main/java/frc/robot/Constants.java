@@ -15,81 +15,81 @@ package frc.robot;
 public final class Constants {
     
     public static class DrivetrainConstants {
-        public static final int k_rightMotorPWMPin = 0;
-        public static final int k_leftMotorPWMPin = 0;
+        public static final int k_rightMotorPWMPin = 0; // TODO
+        public static final int k_leftMotorPWMPin = 0; // TODO
 
-        public static final int k_rightMotorDirPin = 0;
-        public static final int k_leftMotorDirPin = 0;
+        public static final int k_rightMotorDirPin = 0; // TODO
+        public static final int k_leftMotorDirPin = 0; // TODO
 
-        public static final int k_leftMotorID = 0;
-        public static final int k_rightMotorID = 1;
+        public static final int k_leftMotorID = 0; // TODO
+        public static final int k_rightMotorID = 1; // TODO
 
-        public static final int k_rightEncoderPin1 = 0;
-        public static final int k_rightEncoderPin2 = 0;
+        public static final int k_rightEncoderPin1 = 0; // TODO
+        public static final int k_rightEncoderPin2 = 0; // TODO
 
-        public static final int k_leftEncoderPin1 = 0;
-        public static final int k_leftEncoderPin2 = 0;
+        public static final int k_leftEncoderPin1 = 0; // TODO
+        public static final int k_leftEncoderPin2 = 0; // TODO
 
-        public static final double k_maxSpeed = 0; 
+        public static final double k_maxSpeed = 0;  // TODO
         public static final double k_F = 1.0/k_maxSpeed;
 
-        public static final double kP = 0;
-        public static final double kI = 0;
-        public static final double kD = 0;
+        public static final double kP = 0; // TODO
+        public static final double kI = 0; // TODO
+        public static final double kD = 0; // TODO
 
-        public static final double k_posTolerance = 5;
-        public static final double k_vTolerance = 5;
-        public static final double k_maxIntegral = 5;
-        public static final double k_minIntegral = 5;
+        public static final double k_posTolerance = 5; // TODO
+        public static final double k_vTolerance = 5; // TODO
+        public static final double k_maxIntegral = 5; // TODO
+        public static final double k_minIntegral = 5; // TODO
     }
 
     public static class ShooterConstants {
-        public static final int k_shooterMotorPWMPin = 0;
-        public static final int k_shooterMotorDirPin = 0;
-        public static final int k_shooterMotorID = 2;
+        public static final int k_shooterMotorPWMPin = 0; // TODO
+        public static final int k_shooterMotorDirPin = 0; // TODO
+        public static final int k_shooterMotorID = 2; // TODO
 
-        public static final int k_shooterEncoderPin1 = 0;
-        public static final int k_shooterEncoderPin2 = 0;
+        public static final int k_shooterEncoderPin1 = 0; // TODO
+        public static final int k_shooterEncoderPin2 = 0; // TODO
 
         public static final double k_TTMotorPulsePerRotation = 960;
 
-        public static double k_shooterRPM = 0;
+        public static double k_shooterRPM = 0; // TODO need testing
         
-        public static final double kP = 0;
-        public static final double kI = 0;
-        public static final double kD = 0;
-        public static final double kF = 0;
+        public static final double kP = 0; // TODO need testing
+        public static final double kI = 0; // TODO need testing
+        public static final double kD = 0; // TODO need testing
+        public static final double kF = 0; // TODO need testing
 
-        public static final double k_rpmTolerancePercent = 0.1;
-        public static final double k_plateauCount = 5;
+        public static final double k_rpmTolerancePercent = 0.1; // TODO need testing
+        public static final double k_plateauCount = 5; // TODO need testing
     }
 
     public static class FeederConstants {
-        public static final int k_feederMotorPWMPin = 0;
+        public static final int k_feederMotorPWMPin = 0; // TODO
 
-        public static final int k_feederEncoderPin1 = 0;
-        public static final int k_feederEncoderPin2 = 0;
+        public static final int k_feederEncoderPin1 = 0; // TODO
+        public static final int k_feederEncoderPin2 = 0; // TODO
 
-        public static final double k_feederRPM = 0;
+        public static final double k_feederRPM = 0; // TODO need testing
 
-        public static final double k_TTMotorPulsePerRotation = 960;
+        public static final double k_TTMotorPulsePerRotation = 960; 
 
     }
 
     public static class TurretConstants {
-        public static final int k_turretMotorPWMPin = 0;
+        public static final int k_turretMotorPWMPin = 0; // TODO
 
-        public static final int k_turretEncoderPin1 = 0;
-        public static final int k_turretEncoderPin2 = 0;
+        public static final int k_turretEncoderPin1 = 0; // TODO
+        public static final int k_turretEncoderPin2 = 0; // TODO
 
-        public static final double kP = 0;
-        public static final double kI = 0;
-        public static final double kD = 0;
-        public static final double kF = 0;
+        public static final double kP = 0; // TODO need testing
+        public static final double kI = 0; // TODO need testing
+        public static final double kD = 0; // TODO need testing
+        public static final double kF = 0; // TODO need testing
 
         public static final double k_turretDefaultAngle = 0;
 
-        public static final double k_turretTolerance = 0;
+        public static final double k_turretTolerance = 0; // TODO need testing
 
         public static final double k_TTMotorPulsePerRotation = 960;// not too sure about thiss
 

@@ -8,7 +8,6 @@ import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-/** An example command that uses an example drivetrain. */
 public class TestMotorSpeedCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final Drivetrain m_drivetrain;
@@ -21,14 +20,14 @@ public class TestMotorSpeedCommand extends CommandBase {
    *
    * @param drivetrain The drivetrain used by this command.
    */
-  public TestMotorSpeedCommand(Drivetrain drivetrain) {
-    m_drivetrain = drivetrain;
-    m_leftEncoder = drivetrain.getLeftEncoder();
-    m_rightEncoder = drivetrain.getRightEncoder();
+  public TestMotorSpeedCommand() {
+    m_drivetrain = Drivetrain.getInstance();
+    m_leftEncoder = m_drivetrain.getLeftEncoder();
+    m_rightEncoder = m_drivetrain.getRightEncoder();
 
     
     // Use addRequirements() here to declare drivetrain dependencies.
-    addRequirements(drivetrain);
+    addRequirements(m_drivetrain);
   }
 
   // Called when the command is initially scheduled.

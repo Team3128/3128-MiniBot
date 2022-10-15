@@ -20,11 +20,11 @@ public class ArcadeDriveCommand extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public ArcadeDriveCommand(Drivetrain drivetrain, NAR_Joystick joystick) {
-    m_drivetrain = drivetrain;
+  public ArcadeDriveCommand(NAR_Joystick joystick) {
+    m_drivetrain = Drivetrain.getInstance();
     m_joystick = joystick; 
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(drivetrain);
+    addRequirements(m_drivetrain);
   }
 
   // Called when the command is initially scheduled.

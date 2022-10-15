@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PWM;
 
-/** An example command that uses an example subsystem. */
 public class DriveForDistanceCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final Drivetrain m_drivetrain; 
@@ -26,12 +25,12 @@ public class DriveForDistanceCommand extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public DriveForDistanceCommand(Drivetrain drivetrain, double speed, double distance) {
-    m_drivetrain = drivetrain;
+  public DriveForDistanceCommand(double speed, double distance) {
+    m_drivetrain = Drivetrain.getInstance();
     m_speed = speed;
     m_distance = distance; 
-    m_leftEncoder = drivetrain.getLeftEncoder();
-    m_rightEncoder = drivetrain.getRightEncoder();
+    m_leftEncoder = m_drivetrain.getLeftEncoder();
+    m_rightEncoder = m_drivetrain.getRightEncoder();
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_drivetrain);
   }
