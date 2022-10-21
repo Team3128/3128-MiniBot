@@ -1,11 +1,7 @@
 package frc.robot.common.hardware.input;
 
 
-import java.util.function.BooleanSupplier;
-
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import edu.wpi.first.wpilibj2.command.button.POVButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 /**
@@ -16,13 +12,13 @@ public class NAR_Joystick {
 
     private Joystick stick;
 
-    private JoystickButton[] buttons;
+    private Trigger[] buttons;
 
     /**
      * POV convention: 0 = up, 45 = top right, 90 = right, 135 = buttom right, 180 = down, 225 = bottom left, 270 = left, 315 = top left
      * We assign indices as angle / 45 [0,7]
      */
-    private POVButton[] povButtons;
+    private Trigger[] povButtons;
 
     private double xDeadband = 0.05;
     private double yDeadband = 0.05;
@@ -31,16 +27,22 @@ public class NAR_Joystick {
     private double throttleUpperBound = 0.8;
 
     public NAR_Joystick(int deviceNumber) {
-        buttons = new JoystickButton[16];
-        povButtons = new POVButton[8];
+        buttons = new Trigger[16];
+        povButtons = new Trigger[8];
         stick = new Joystick(deviceNumber);
 
         // Thrustmaster joystick has 16 buttons
-        for (int i = 0; i < 16; i++)
-            buttons[i] = new JoystickButton(stick, i+1);
-        for (int i = 0; i < 8; i++)
-            povButtons[i] = new POVButton(stick, i * 45);
 
+        for (int i = 0; i < 16; i++) {
+            int buttonId = i;
+            buttons[buttonId] = new Trigger(()->stick.getRawButton(buttonId + 1)); 
+        }
+            
+        for (int i = 0; i < 8; i++) {
+            int povButtonId = i;
+            povButtons[povButtonId] = new Trigger(()->stick.getPOV(povButtonId) == povButtonId * 45);
+        }
+            
     }
 
     /**  @return Joystick X on [-1, 1], -1 is left, 1 is right - default deadband is 0.05 */
@@ -62,6 +64,10 @@ public class NAR_Joystick {
     public double getTwist() {
         return getZ();
     }
+
+    public Trigger ifTwisted() {
+        return new Trigger (() -> Math.abs((getTwist())) >= 0.1);
+    } 
 
     /**  @return Throttle on [0, 1] where 0 is throttle at bottom, 1 is throttle at top - Default lower bound is 0.3, upper bound is 0.8, so anything below 0.3 returns 0.3, anything above 0.8 returns 1. */
     public double getThrottle() {
@@ -95,37 +101,33 @@ public class NAR_Joystick {
         return stick.getTwist();
     }
 
-    public Trigger ifTwisted() {
-        return new Trigger (() -> Math.abs((getTwist())) >= 0.1);
-    } 
-
     /** @return Raw Joystick throttle on [-1, 1], -1 is throttle all the way up, 1 is throttle all the way down */
     public double getRawThrottle() {
         return stick.getThrottle();
     }
 
-    public JoystickButton getButton(int i) {
+    public Trigger getButton(int i) {
         return buttons[i-1];
     }
 
-    public POVButton getPOVButton(int i) {
+    public Trigger getPOVButton(int i) {
         return povButtons[i];
     }
 
-    public POVButton getUpPOVButton() {
+    public Trigger getUpPOVButton() {
         return getPOVButton(0);
     }
 
-    public POVButton getDownPOVButton() {
+    public Trigger getRightPOVButton() {
+        return getPOVButton(2);
+    }
+
+    public Trigger getDownPOVButton() {
         return getPOVButton(4);
     }
 
-    public POVButton getLeftPOVButton() {
+    public Trigger getLeftPOVButton() {
         return getPOVButton(6);
-    }
-
-    public POVButton getRightPOVButton() {
-        return getPOVButton(2);
     }
 
     public void setXDeadband(double xDeadband) {
