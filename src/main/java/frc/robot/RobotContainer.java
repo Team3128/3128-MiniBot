@@ -42,14 +42,13 @@ public class RobotContainer {
 
   }
 
-
   private void configureButtonBindings() {
-    m_rightStick.getButton(1).whenHeld(new RunFeederAndShoot(0));
-    m_rightStick.getButton(2).whenPressed(new DriveForDistanceCommand(0.75, 3000)); //-/+1.0, seconds
-    m_rightStick.getButton(3).whenPressed(new TestMotorSpeedCommand());
-    m_rightStick.getButton(4).whenPressed(new DriveForTimeCommand(0.75, 3.0)); //-/+1.0, seconds
-    m_rightStick.getButton(5).whenPressed(() -> m_turret.resetAngle()); // Set turret angle to default(0)
-    m_rightStick.getButton(6).whenHeld(new RunFeeder());
+    m_rightStick.getButton(1).whileActiveOnce(new RunFeederAndShoot(0));
+    m_rightStick.getButton(2).whenActive(new DriveForDistanceCommand(0.75, 3000)); //-/+1.0, seconds
+    m_rightStick.getButton(3).whenActive(new TestMotorSpeedCommand());
+    m_rightStick.getButton(4).whenActive(new DriveForTimeCommand(0.75, 3.0)); //-/+1.0, seconds
+    m_rightStick.getButton(5).whenActive(() -> m_turret.resetAngle()); // Set turret angle to default(0)
+    m_rightStick.getButton(6).whileActiveOnce(new RunFeeder());
     m_leftStick.ifTwisted().whenActive(new TurnTurretFromJoystick(m_leftStick.getTwist())); // using left joystick to control turret
     
   }
