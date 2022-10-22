@@ -5,6 +5,8 @@
 package frc.robot.commands;
 
 import frc.robot.subsystems.Turret;
+import static frc.robot.Constants.TurretConstants.*;
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class TurnTurret extends CommandBase {
@@ -33,7 +35,7 @@ public class TurnTurret extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_turret.startPID(angle);
+    m_turret.startPID(MathUtil.clamp(angle, -k_maxTurnDegree, k_maxTurnDegree));
   }
 
   // Called once the command ends or is interrupted.

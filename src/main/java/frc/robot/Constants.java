@@ -89,10 +89,14 @@ public final class Constants {
 
         public static final double k_turretDefaultAngle = 0;
 
+        public static final double k_maxTurnDegree = 90; // TODO need testing
+
         public static final double k_turretTolerance = 0; // TODO need testing
 
         public static final double k_TTMotorPulsePerRotation = 960;// not too sure about thiss
 
         public static final double k_twistToDegree = 10; // TODO needs to be checked
+
+        public static final double k_turretGearRatio = 0; // TODO need testing
     }
 }
