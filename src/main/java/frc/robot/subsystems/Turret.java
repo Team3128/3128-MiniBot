@@ -62,7 +62,7 @@ public class Turret extends PIDSubsystem {
 
     @Override
     protected double getMeasurement() {
-        return m_turretEncoder.get();
+        return m_turretEncoder.getDistance();
         //get count of encoder
     }
 
@@ -81,7 +81,7 @@ public class Turret extends PIDSubsystem {
     }
 
     public void convertEncoderUnit() {
-      m_turretEncoder.setDistancePerPulse((360 / k_TTMotorPulsePerRotation));
+      m_turretEncoder.setDistancePerPulse((360 / k_TTMotorPulsePerRotation / k_turretGearRatio));
       //setting each count of encoder to equivalent amount of degree
     }
   

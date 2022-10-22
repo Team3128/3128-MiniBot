@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import frc.robot.subsystems.Turret;
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import static frc.robot.Constants.TurretConstants.*;
 
@@ -39,7 +40,7 @@ public class TurnTurretFromJoystick extends CommandBase {
   public void execute() {
 
     currentAng = m_turret.getEncoder();
-    angle = currentAng + twist * k_twistToDegree;
+    angle = (MathUtil.clamp(currentAng + twist * k_twistToDegree, -k_maxTurnDegree, k_maxTurnDegree));
     m_turret.startPID(angle);
 
   }
