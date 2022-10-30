@@ -1,6 +1,5 @@
 package frc.robot.common.hardware.input;
 
-
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
@@ -35,15 +34,19 @@ public class NAR_Joystick {
 
         for (int i = 0; i < 16; i++) {
             int buttonId = i;
-            buttons[buttonId] = new Trigger(()->stick.getRawButton(buttonId + 1)); 
+            buttons[buttonId] = new Trigger(() -> stick.getRawButton(buttonId + 1)); 
         }
             
         for (int i = 0; i < 8; i++) {
             int povButtonId = i;
-            povButtons[povButtonId] = new Trigger(()->stick.getPOV(povButtonId) == povButtonId * 45);
+            povButtons[povButtonId] = new Trigger(() -> stick.getPOV() == povButtonId * 45);
         }
             
     }
+
+    public Trigger ifTwisted() {
+        return new Trigger (() -> Math.abs((getTwist())) >= 0.1);
+    } 
 
     /**  @return Joystick X on [-1, 1], -1 is left, 1 is right - default deadband is 0.05 */
     public double getX() {
@@ -64,10 +67,6 @@ public class NAR_Joystick {
     public double getTwist() {
         return getZ();
     }
-
-    public Trigger ifTwisted() {
-        return new Trigger (() -> Math.abs((getTwist())) >= 0.1);
-    } 
 
     /**  @return Throttle on [0, 1] where 0 is throttle at bottom, 1 is throttle at top - Default lower bound is 0.3, upper bound is 0.8, so anything below 0.3 returns 0.3, anything above 0.8 returns 1. */
     public double getThrottle() {
