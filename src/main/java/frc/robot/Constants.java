@@ -82,6 +82,9 @@ public final class Constants {
         public static final int k_turretEncoderPin1 = 0; // TODO
         public static final int k_turretEncoderPin2 = 0; // TODO
 
+        public static final int k_leftLimitSwitchPin = 0; // TODO
+        public static final int k_rightLimitSwitchPin = 0; // TODO
+
         public static final double kP = 0; // TODO need testing
         public static final double kI = 0; // TODO need testing
         public static final double kD = 0; // TODO need testing

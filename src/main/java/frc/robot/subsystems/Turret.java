@@ -5,6 +5,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PWM;
 import static frc.robot.Constants.TurretConstants.*;
@@ -19,6 +20,9 @@ public class Turret extends PIDSubsystem {
     private PWM m_turretMotor = new PWM(k_turretMotorPWMPin);
 
     private Encoder m_turretEncoder = new Encoder(k_turretEncoderPin1, k_turretEncoderPin2);
+
+    private DigitalInput leftLimitSwitch = new DigitalInput(k_leftLimitSwitchPin);
+    private DigitalInput rightLimitSwitch = new DigitalInput(k_rightLimitSwitchPin);
 
     public Turret() {
       super(new PIDController(kP, kI, kD));
@@ -55,8 +59,15 @@ public class Turret extends PIDSubsystem {
     @Override
     protected void useOutput(double output, double setpoint) {
       // we shouldn't need a FF...
+      // TODO check if direction and limitswitch on/off are correct
 
-      m_turretMotor.setSpeed(MathUtil.clamp(output / 7.2, -1, 1));
+      if (output < 0 && !leftLimitSwitch.get()) {
+        m_turretMotor.setSpeed(MathUtil.clamp(output / 7.2, -1, 1));
+      }
+
+      if (output > 0 && !rightLimitSwitch.get()) {
+        m_turretMotor.setSpeed(MathUtil.clamp(output / 7.2, -1, 1));
+      }
         
     }
 
