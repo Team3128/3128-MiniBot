@@ -6,7 +6,6 @@ package frc.robot.commands;
 
 import frc.robot.common.hardware.input.NAR_Joystick;
 import frc.robot.subsystems.Drivetrain;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
