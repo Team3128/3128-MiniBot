@@ -1,0 +1,22 @@
+{
+    "cSpell.words": [
+        "cksum",
+        "endcond",
+        "Fleft",
+        "Gpio",
+        "PIDD",
+        "PIDF",
+        "PIDI",
+        "PIDP",
+        "Raspi",
+        "RGBLed",
+        "spinup",
+        "teleop",
+        "teleoperated",
+        "Turntablesubsystem",
+        "Waypoint's",
+        "wpilibj"
+    ],
+
+    "editor.inlayHints.enabled": false
+}
